@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.IBinder
 import android.app.admin.DevicePolicyManager
 import android.content.ComponentName
+import android.util.Log
 import android.widget.Toast
 
 /**
@@ -19,7 +20,12 @@ class LockService : Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        lockscreen()
+        intent?.getStringExtra("Tap")?.let {
+            if(it == "lock"){
+                lockscreen()
+                Log.d("LockService","存在Intent数据")
+            }
+        }
         return super.onStartCommand(intent, flags, startId)
     }
 

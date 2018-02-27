@@ -41,7 +41,8 @@
         <service
             android:name=".LockService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true"
+            android:process=":remote"></service>
     </application>
 
 </manifest>

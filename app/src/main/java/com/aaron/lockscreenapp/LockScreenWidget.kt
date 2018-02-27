@@ -38,7 +38,8 @@ class LockScreenWidget : AppWidgetProvider() {
         internal fun updateAppWidget(context: Context, appWidgetManager: AppWidgetManager,
                                      appWidgetId: Int) {
             val startServiceIntent = Intent(context,LockService::class.java)
-            val pIntent = PendingIntent.getService(context, 0, startServiceIntent, 0)
+            startServiceIntent.putExtra("Tap","lock")
+            val pIntent = PendingIntent.getService(context, 0, startServiceIntent, PendingIntent.FLAG_UPDATE_CURRENT)
             val views = RemoteViews(context.packageName, R.layout.lock_screen_widget)
             views.setOnClickPendingIntent(R.id.imageView,pIntent)
             // Instruct the widget manager to update the widget
